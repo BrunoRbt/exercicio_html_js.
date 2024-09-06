@@ -1,0 +1,63 @@
+// codigo HTML - index.html
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Validação</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Formulário de Validação</h1>
+    <form id="validationForm">
+        <label for="campoA">Campo A:</label>
+        <input type="number" id="campoA" name="campoA" required><br><br>
+        <label for="campoB">Campo B:</label>
+        <input type="number" id="campoB" name="campoB" required><br><br>
+        <button type="submit">Submeter</button>
+    </form>
+    <div id="message" class="message"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+ 
+// codigo js - script.js
+
+document.getElementById('validationForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const campoA = parseFloat(document.getElementById('campoA').value);
+    const campoB = parseFloat(document.getElementById('campoB').value);
+    const messageDiv = document.getElementById('message');
+
+    if (campoB > campoA) {
+        messageDiv.textContent = 'Formulário válido! O número B é maior que o número A.';
+        messageDiv.className = 'message success';
+    } else {
+        messageDiv.textContent = 'Formulário inválido! O número B deve ser maior que o número A.';
+        messageDiv.className = 'message error';
+    }
+});
+
+// Codigo css - styles.css
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+.message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
